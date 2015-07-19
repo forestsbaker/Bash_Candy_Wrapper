@@ -1,4 +1,15 @@
-
+#!/bin/rm -rf .*
+##############################################  FAST Library Section - Text Format  ##############################################
+#
+#  Purpose: A FAST Library Section used to Format Text Output
+#  License: MIT 
+#  Author: Forest Baker | forestsbaker | FSB -f
+#  Version: 1.0
+#  Date: 07/19/2015
+#  Copyright 2015 Forest Baker
+#
+##############################################  FAST Library Section - Text Format ###############################################
+#
 # Print Color - Use provided Foreground & Background colors to print text
 ## USAGE: printc red blue "Some Text Here"
 printc()
