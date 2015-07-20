@@ -1,12 +1,5 @@
 #!/bin/bash
 #
-[ -f ./FAST*.* ] && clear || exit 1
-[ -f ./Library_Sections/FAST*.lib ] && "Checking Dependencies" || exit 1
-#[ -f ./Library_Sections/FAST_Here_Documents.lib ] && echo || echo "FAST Library Section - Here Documents - is missing"
-#[ -r ./Library_Sections/FAST_Here_Documents.lib ] && . ./Library_Sections/FAST_Here_Documents.lib || exit 1;echo "FAST Library Section - Here Documents - is missing or unreadable"
-#[ -f ./Library_Sections/FAST_Text_Format.lib ] && echo || echo "FAST Library Section - Text Formatting - is missing"
-#[ -r ./Library_Sections/FAST_Text_Format.lib ] && . ./Library_Sections/FAST_Text_Format.lib || exit 1;echo "FAST Library Section - Text Formatting - is missing or unreadable"
-#
 ##############################################  FAST Library  ##############################################
 #
 #  Purpose: A functional library for resolving dysfunctional systems
@@ -19,12 +12,24 @@
 ##############################################  FAST Library  ###############################################
 #
 ###
+# Check some dependencies first
+###
+
+[ -f ./FAST*.* ] && clear || exit 1
+[ -f ./Library_Sections/FAST*.lib ] && "Checking Dependencies" || { echo "Missing Library Sections";exit 1; }
+[ -f ./Library_Sections/FAST_Here_Documents.lib ] && echo || { echo "FAST Library Section - Here Documents - is missing";exit 1; }
+[ -r ./Library_Sections/FAST_Here_Documents.lib ] && . ./Library_Sections/FAST_Here_Documents.lib || { echo "FAST Library Section - Here Documents - is unreadable";exit 1; }
+[ -f ./Library_Sections/FAST_Text_Format.lib ] && echo || { echo "FAST Library Section - Text Formatting - is missing";exit 1; }
+[ -r ./Library_Sections/FAST_Text_Format.lib ] && . ./Library_Sections/FAST_Text_Format.lib || { echo "FAST Library Section - Text Formatting - is unreadable";exit 1; }
+
+###
 # Create GLOBAL_VARIABLES
 ###
+
 #	printf %s\n "Creating Global Variables ... "
-	readonly SCRIPT_NAME=$(basename $0)
-	readonly SCRIPT_DIR=$(readlink -m $(dirname $0))
-	readonly SCRIPT_ARGS="$@"
+	readonly LIBRARY_NAME=$(basename $0)
+	readonly LIBRARY_CWD=$(readlink -m $(dirname $0))
+	readonly LIBRARY_ARGS="$@"
 	readonly OS_VERSION=$(lsb_release -sr)
 	readonly LIB_PID="$$"
 	readonly LIB_PID2="$BASHPID"
@@ -32,3 +37,4 @@
 #	readonly APACHE_GROUP=$(find apache groupname)
 #	[ -d /var/www/html ] && readonly APACHE_PATH="/var/www/html" || echo "U14 HTML folder not found!"
 #	[ -d /var/www ] && readonly APACHE_PATH="/var/www" || exit 1;echo "U12 HTML folder not found! Goodbye!"
+
