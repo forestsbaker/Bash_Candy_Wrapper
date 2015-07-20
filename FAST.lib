@@ -1,32 +1,42 @@
 #!/bin/bash
 #
-##############################################  FAST Library  ##############################################
+###########################  FAST - Forest's Accessible Shell Toolkit  ##############################
 #
-#  Purpose: A functional library for resolving dysfunctional systems
+#  Purpose: A menu driven Application Installer, System Tuner and Problem Solver.
 #  License: MIT 
 #  Author: Forest Baker | forestsbaker | FSB -f
-#  Version: 1.0
-#  Date: 06/23/15
 #  Copyright 2015 Forest Baker
 #
-##############################################  FAST Library  ###############################################
+#  Version: 1.0
+#  Date: 06/23/15
+#
+##############################################  FAST  ###############################################
 #
 ###
 # Check some dependencies first
 ###
 
 [ -f ./FAST*.* ] && clear || exit 1
-[ -f ./Library_Sections/FAST*.lib ] && "Checking Dependencies" || { echo "Missing Library Sections";exit 1; }
-[ -f ./Library_Sections/FAST_Here_Documents.lib ] && echo || { echo "FAST Library Section - Here Documents - is missing";exit 1; }
-[ -r ./Library_Sections/FAST_Here_Documents.lib ] && . ./Library_Sections/FAST_Here_Documents.lib || { echo "FAST Library Section - Here Documents - is unreadable";exit 1; }
-[ -f ./Library_Sections/FAST_Text_Format.lib ] && echo || { echo "FAST Library Section - Text Formatting - is missing";exit 1; }
-[ -r ./Library_Sections/FAST_Text_Format.lib ] && . ./Library_Sections/FAST_Text_Format.lib || { echo "FAST Library Section - Text Formatting - is unreadable";exit 1; }
+#[ -f ./Library_Sections/FAST*.lib ] && "Checking Dependencies" || { echo "Missing Library Sections";exit 1; }
+#[ -f ./Library_Sections/FAST_Here_Documents.lib ] && echo || { echo "FAST Library Section - Here Documents - is missing";exit 1; }
+#[ -r ./Library_Sections/FAST_Here_Documents.lib ] && . ./Library_Sections/FAST_Here_Documents.lib || { echo "FAST Library Section - Here Documents - is unreadable";exit 1; }
 
 ###
+# Create a Temporary Workshop
 # Create GLOBAL_VARIABLES
+# Unpack the Library into the Workshop
 ###
 
-#	printf %s\n "Creating Global Variables ... "
+
+###
+
+###
+
+readonly WORKSHOP=$(mktemp -d $HOME/workshop.XXXXXX)
+rm -f $WORKSHOP/*
+tar -jf ./Tool.box 
+
+	printf %s\n "Creating Global Variables ... "
 	readonly LIBRARY_NAME=$(basename $0)
 	readonly LIBRARY_CWD=$(readlink -m $(dirname $0))
 	readonly LIBRARY_ARGS="$@"
