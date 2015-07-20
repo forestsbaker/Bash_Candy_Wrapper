@@ -5,9 +5,11 @@
 #  Purpose: A functional library for resolving dysfunctional systems
 #  License: MIT 
 #  Author: Forest Baker | forestsbaker | FSB -f
+#  Copyright 2015 Forest Baker
+#
 #  Version: 1.0
 #  Date: 06/23/15
-#  Copyright 2015 Forest Baker
+#  Quote: Seagull Management - "A suit flies in, makes a lot of noise, craps on everything, and flies off"
 #
 ##############################################  FAST Library  ###############################################
 #
@@ -26,15 +28,10 @@
 # Create GLOBAL_VARIABLES
 ###
 
-#	printf %s\n "Creating Global Variables ... "
 	readonly LIBRARY_NAME=$(basename $0)
 	readonly LIBRARY_CWD=$(readlink -m $(dirname $0))
 	readonly LIBRARY_ARGS="$@"
 	readonly OS_VERSION=$(lsb_release -sr)
 	readonly LIB_PID="$$"
 	readonly LIB_PID2="$BASHPID"
-#	readonly APACHE_USER=$(find apache username)
-#	readonly APACHE_GROUP=$(find apache groupname)
-#	[ -d /var/www/html ] && readonly APACHE_PATH="/var/www/html" || echo "U14 HTML folder not found!"
-#	[ -d /var/www ] && readonly APACHE_PATH="/var/www" || exit 1;echo "U12 HTML folder not found! Goodbye!"
-
+	
