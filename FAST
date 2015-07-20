@@ -1,0 +1,46 @@
+#!/bin/bash
+#
+###########################  FAST - Forest's Accessible Shell Toolkit  ##############################
+#
+#  Purpose: A menu driven Application Installer, System Tuner and Problem Solver.
+#  License: MIT 
+#  Author: Forest Baker | forestsbaker | FSB -f
+#  Copyright 2015 Forest Baker
+#
+#  Version: 1.0
+#  Date: 06/23/15
+#  Quote: "Throw the first one away..."
+#
+##############################################  FAST  ###############################################
+#
+[ -f ./FAST*.* ] && clear || exit 1
+###
+# Build a Temporary Workshop
+# Instantiate GLOBAL_VARIABLES
+# Unpack the Library into the Workshop
+# 
+###
+
+	readonly WORKSHOP=$(mktemp -d $HOME/workshop.XXXXXX)
+	rm -f $WORKSHOP/*
+	# tar -jf ./Tool.box 
+	#[ -f $WORKSHOP/Library_Sections/FAST*.lib ] && "Checking Dependencies" || { echo "Missing Library Sections";exit 1; }
+	#[ -f $WORKSHOP/Library_Sections/FAST_Here_Documents.lib ] && echo || { echo "FAST Library Section - Here Documents - is missing";exit 1; }
+	#[ -r $WORKSHOP/Library_Sections/FAST_Here_Documents.lib ] && . ./Library_Sections/FAST_Here_Documents.lib || { echo "FAST Library Section - Here Documents - is unreadable";exit 1; }
+
+	printf %s\n "Creating Global Variables ... "
+	readonly FAST_NAME=$(basename $0)
+	readonly FAST_CWD=$(readlink -m $(dirname $0))
+	readonly FAST_ARGS="$@"
+	readonly FAST_PID="$$"
+	readonly FAST_PID2="$BASHPID"
+	readonly OS_BASE=$(uname)
+	readonly OS_TYPE=${OSTYPE//[0-9.]/}
+#	readonly OS_NAME=$(uname ???)
+	readonly OS_ARCH=$(arch)
+#	readonly OS_VERSION=$(lsb_release -sr)
+	readonly MACHINE_HW=$(uname -m)
+#	readonly APACHE_USER=$(find apache username)
+#	readonly APACHE_GROUP=$(find apache groupname)
+#	[ -d /var/www/html ] && readonly APACHE_PATH="/var/www/html" || echo "U14 HTML folder not found!"
+#	[ -d /var/www ] && readonly APACHE_PATH="/var/www" || echo "U12 HTML folder not found!"
